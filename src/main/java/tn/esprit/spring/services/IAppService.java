@@ -1,9 +1,6 @@
 package tn.esprit.spring.services;
 
-import tn.esprit.spring.entities.Evenement;
-import tn.esprit.spring.entities.Internaute;
-import tn.esprit.spring.entities.Ticket;
-import tn.esprit.spring.entities.TrancheAge;
+import tn.esprit.spring.entities.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +12,6 @@ public interface IAppService {
     void listeEvenementsParCategorie() ;
     List<Ticket> ajouterTicketsEtAffecterAEvenementEtInternaute(List<Ticket> tickets, Long idEvenement, Long idInternaute );
     Long nbInternauteParTrancheAgeEtDateEvenement(TrancheAge trancheAge, LocalDate dateMin, LocalDate dateMax);
+    Double montantRecupereParEvtEtTypeTicket(String nomEvt, TypeTicket typeTicket);
+    String internauteLePlusActif();
 }

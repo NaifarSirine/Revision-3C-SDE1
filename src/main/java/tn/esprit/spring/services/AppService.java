@@ -72,4 +72,22 @@ public class AppService implements IAppService {
     public Long nbInternauteParTrancheAgeEtDateEvenement(TrancheAge trancheAge, LocalDate dateMin, LocalDate dateMax) {
         return internauteRespository.countDistinctByTrancheAgeAndTicketsEvenementDateEvenementBetween(trancheAge, dateMin, dateMax);
     }
+
+    @Override
+    public Double montantRecupereParEvtEtTypeTicket(String nomEvt, TypeTicket typeTicket) {
+        return ticketRepository.montantRecupereParEvtEtTypeTicket(typeTicket,nomEvt);
+    }
+
+    @Override
+    public String internauteLePlusActif() {
+        String identifiant = "";
+        int max = 0;
+        for (Internaute internaute : internauteRespository.findAll()) {
+            if (ticketRepository.countByInternauteIdInternaute(internaute.getIdInternaute()) > max) {
+                max = ticketRepository.countByInternauteIdInternaute(internaute.getIdInternaute());
+                identifiant = internaute.getIdentifiant();
+            }
+        }
+        return identifiant;
+    }
 }
